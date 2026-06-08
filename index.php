@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Career Buddy Tech — Premium UG Programs in CS/IT and Tech & Business Management. Industry-ready education with 98% placement rate.">
+    <title>Career Buddy Tech | Future-Ready UG Programs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+    <?php
+    $assetVer = static function (string $file): string {
+        $path = __DIR__ . '/' . $file;
+        return file_exists($path) ? (string) filemtime($path) : '1';
+    };
+    ?>
+    <link rel="stylesheet" href="assets/style.css?v=<?php echo $assetVer('assets/style.css'); ?>">
+    <link rel="stylesheet" href="assets/curriculum.css?v=<?php echo $assetVer('assets/curriculum.css'); ?>">
+</head>
+<body>
+
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- Announcement Ticker -->
+    <div class="ticker-bar">
+        <div class="ticker-track">
+            <span>Curriculum by Top Industry Experts</span>
+            <span class="ticker-dot"></span>
+            <span>Up to 100% Scholarships Available</span>
+            <span class="ticker-dot"></span>
+            <span>NAAC A Grade University Partner</span>
+            <span class="ticker-dot"></span>
+            <span>Next Intake Closes June 30</span>
+            <span class="ticker-dot"></span>
+            <span>Only 120 Seats for 2026 Batch</span>
+            <span class="ticker-dot"></span>
+            <span>Curriculum by Top Industry Experts</span>
+            <span class="ticker-dot"></span>
+            <span>Up to 100% Scholarships Available</span>
+            <span class="ticker-dot"></span>
+            <span>NAAC A Grade University Partner</span>
+            <span class="ticker-dot"></span>
+            <span>Next Intake Closes June 30</span>
+            <span class="ticker-dot"></span>
+            <span>Only 120 Seats for 2026 Batch</span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-img"><img src="assets/images/cbc.logo.png" alt="Career Buddy Tech Logo"></span>
+                <!-- <span class="logo-mark">CB</span>
+                <span class="logo-text">Career Buddy <em>Tech</em></span> -->
+            </a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#programs" class="nav-link">Programs</a>
+                <a href="#curriculum" class="nav-link">Curriculum</a>
+                <a href="#placement" class="nav-link">Placement</a>
+                <a href="#mentors" class="nav-link">Mentors</a>
+                <a href="#testimonials" class="nav-link">Stories</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+            <a href="#apply" class="btn btn-primary btn-nav magnetic-btn">Apply Now</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
+        <div class="hero-bg-glow"></div>
+
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <p class="hero-eyebrow reveal-up">Built and delivered with industry leaders</p>
+                <h1 class="hero-title reveal-up">
+                    Bsc in <span class="text-accent"> Nursing</span> +<br>
+                    <span class="text-accent">German Career Track</span>
+                </h1>
+                <p class="hero-sub reveal-up">
+                    4-year degree programs. Get your future-ready edge to the top 1% — in tech, in business, in leadership.
+                </p>
+                <div class="hero-actions reveal-up">
+                    <a href="#apply" class="btn btn-primary btn-lg magnetic-btn">
+                        <span class="btn-text">Apply for the 2026 cohort</span>
+                        <span class="btn-shine"></span>
+                    </a>
+                    <span class="seats-badge">Only 120 seats</span>
+                </div>
+
+                <div class="countdown-box reveal-up">
+                    <p class="countdown-label">NEXT INTAKE CLOSES IN:</p>
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item"><span class="count-num" id="cdDays">00</span><span class="count-unit">D</span></div>
+                        <div class="countdown-item"><span class="count-num" id="cdHours">00</span><span class="count-unit">H</span></div>
+                        <div class="countdown-item"><span class="count-num" id="cdMins">00</span><span class="count-unit">M</span></div>
+                        <div class="countdown-item"><span class="count-num" id="cdSecs">00</span><span class="count-unit">S</span></div>
+                    </div>
+                </div>
+
+                <div class="hero-stats-row reveal-up">
+                    <div class="hero-stat">
+                        <strong><span data-count="500">0</span>+</strong>
+                        <span>Students Placed</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>₹<span data-count="18">0</span>L+</strong>
+                        <span>Avg Placement</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>₹<span data-count="45">0</span>L</strong>
+                        <span>Highest Package</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right reveal-up">
+                <div class="video-frame">
+                    <div class="video-frame-glow"></div>
+                    <div class="video-placeholder">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=500&fit=crop" alt="Students learning technology" loading="eager">
+                        <button class="play-btn" aria-label="Play video">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Anchor Pills -->
+        <div class="anchor-pills">
+            <div class="container anchor-pills-inner">
+                <a href="#placement" class="anchor-pill">Placement</a>
+                <a href="#programs" class="anchor-pill">Programs</a>
+                <a href="#curriculum" class="anchor-pill">Curriculum</a>
+                <a href="#experience" class="anchor-pill">Industry Integration</a>
+                <a href="#mentors" class="anchor-pill">Mentors</a>
+                <a href="#apply" class="anchor-pill">Admission Process</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Cards Marquee -->
+    <section class="features-strip">
+        <div class="swiper features-swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="feature-card">
+                        <span class="feature-icon">🌐</span>
+                        <h3>Global Industry Access</h3>
+                        <p>Paid internships from year 1. Mandatory 2 internships. Earn up to ₹2L per year while you learn.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="feature-card">
+                        <span class="feature-icon">⚡</span>
+                        <h3>Live Externships</h3>
+                        <p>4 mandatory real-world live projects with 30+ industry partners before you graduate.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="feature-card">
+                        <span class="feature-icon">📊</span>
+                        <h3>Business Leadership Track</h3>
+                        <p>Learn how billion-dollar companies are built and scaled from industry leaders and founders.</p>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="feature-card">
+                        <span class="feature-icon">✈️</span>
+                        <h3>Global Immersions</h3>
+                        <p>On-ground exposure in Dubai, Singapore & Shenzhen. Network and learn from the best.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Programs -->
+    <section class="section programs-section" id="programs">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label reveal-up">Featured Programs</span>
+                <h2 class="section-title reveal-up">Choose Your Path to the <span class="text-accent">Top 1%</span></h2>
+                <p class="section-desc reveal-up">Two industry-aligned undergraduate programs designed to make you job-ready from day one.</p>
+            </div>
+
+            <div class="programs-grid">
+                <article class="program-card reveal-up" data-tilt>
+                    <div class="program-card-shine"></div>
+                    <div class="program-top">
+                        <span class="program-badge">Industry Ready</span>
+                        <span class="program-duration">4 Years · Full Time</span>
+                    </div>
+                    <h3 class="program-name">UG Program in CS/IT</h3>
+                    <p class="program-desc">Master full-stack development, cloud computing, AI fundamentals, and modern software engineering — built for top tech roles.</p>
+                    <div class="program-metrics">
+                        <div><strong>₹8–25 LPA</strong><span>Avg. Package</span></div>
+                        <div><strong>500+</strong><span>Hiring Partners</span></div>
+                    </div>
+                    <ul class="program-tags">
+                        <li>Full-Stack Labs</li>
+                        <li>AI/ML Track</li>
+                        <li>Cloud & DevOps</li>
+                    </ul>
+                    <div class="program-actions">
+                        <a href="#apply" class="btn btn-primary magnetic-btn">Apply Now</a>
+                        <a href="#curriculum" class="btn btn-ghost magnetic-btn">View Curriculum</a>
+                    </div>
+                </article>
+
+                <article class="program-card program-card--featured reveal-up" data-tilt>
+                    <div class="program-ribbon">Most Popular</div>
+                    <div class="program-card-shine"></div>
+                    <div class="program-top">
+                        <span class="program-badge">Industry Ready</span>
+                        <span class="program-duration">4 Years · Full Time</span>
+                    </div>
+                    <h3 class="program-name">UG Program in Tech & Business Management</h3>
+                    <p class="program-desc">Blend cutting-edge technology with strategic business acumen. Lead digital transformation in any industry.</p>
+                    <div class="program-metrics">
+                        <div><strong>₹10–30 LPA</strong><span>Avg. Package</span></div>
+                        <div><strong>Startup Lab</strong><span>Incubation</span></div>
+                    </div>
+                    <ul class="program-tags">
+                        <li>Product Management</li>
+                        <li>Entrepreneurship</li>
+                        <li>Global Business</li>
+                    </ul>
+                    <div class="program-actions">
+                        <a href="#apply" class="btn btn-primary magnetic-btn">Apply Now</a>
+                        <a href="#curriculum" class="btn btn-ghost magnetic-btn">View Curriculum</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- University Partnership -->
+    <section class="section campus-section">
+        <div class="container">
+            <div class="campus-grid">
+                <div class="campus-info reveal-up">
+                    <span class="section-label">Your degree is awarded by</span>
+                    <h2 class="section-title">Partner University<br><span class="text-muted">NAAC A-Grade · UGC Recognized</span></h2>
+                    <p class="section-desc">A recognized university with modern infrastructure. Don't miss out on the full college experience.</p>
+                    <div class="campus-stats">
+                        <div class="campus-stat"><strong>28</strong><span>Acres Campus</span></div>
+                        <div class="campus-stat"><strong>A</strong><span>NAAC Grade</span></div>
+                        <div class="campus-stat"><strong>Yes</strong><span>UGC Recognized</span></div>
+                    </div>
+                </div>
+                <div class="campus-gallery reveal-up">
+                    <div class="swiper campus-swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop" alt="Campus" loading="lazy"></div>
+                            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=600&h=400&fit=crop" alt="Campus building" loading="lazy"></div>
+                            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600&h=400&fit=crop" alt="Campus interior" loading="lazy"></div>
+                            <div class="swiper-slide"><img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop" alt="Students on campus" loading="lazy"></div>
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Track Record -->
+    <section class="section track-section" id="placement">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label reveal-up">Our Track Record</span>
+                <h2 class="section-title reveal-up">We've Done This Before</h2>
+            </div>
+            <div class="track-grid reveal-up">
+                <div class="track-card">
+                    <span class="track-num"><span data-count="500">0</span>+</span>
+                    <span class="track-label">Students Trained</span>
+                </div>
+                <div class="track-card">
+                    <span class="track-num">₹<span data-count="18">0</span>L+</span>
+                    <span class="track-label">Avg. Package</span>
+                </div>
+                <div class="track-card">
+                    <span class="track-num">₹<span data-count="45">0</span>L</span>
+                    <span class="track-label">Highest Package</span>
+                </div>
+                <div class="track-card">
+                    <span class="track-num"><span data-count="98">0</span>%</span>
+                    <span class="track-label">Placement Rate</span>
+                </div>
+            </div>
+            <p class="track-sub reveal-up">Our alumni now work at</p>
+            <div class="swiper logos-swiper reveal-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide"><div class="logo-pill">Google</div></div>
+                    <div class="swiper-slide"><div class="logo-pill">Amazon</div></div>
+                    <div class="swiper-slide"><div class="logo-pill">Microsoft</div></div>
+                    <div class="swiper-slide"><div class="logo-pill">Meta</div></div>
+                    <div class="swiper-slide"><div class="logo-pill">Flipkart</div></div>
+                    <div class="swiper-slide"><div class="logo-pill">Swiggy</div></div>
+                    <div class="swiper-slide"><div class="logo-pill">Razorpay</div></div>
+                    <div class="swiper-slide"><div class="logo-pill">PhonePe</div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Premium Curriculum — Stacking Cards -->
+    <section class="section curriculum-section" id="curriculum">
+        <div class="container container--curriculum">
+            <div class="section-header center curriculum-header reveal-up">
+                <span class="curriculum-path-badge">Curriculum Path</span>
+                <h2 class="section-title curriculum-title">Your <span class="gradient-text">Learning Journey</span></h2>
+            </div>
+
+            <div class="curriculum-layout">
+                <nav class="curriculum-sidebar" aria-label="Curriculum years">
+                    <ul class="cur-nav-list">
+                        <li><a href="#year1" data-target="year1" class="cur-nav-link active"><span class="cur-nav-num">1</span><span class="cur-nav-title">CBC Skill Track</span></a></li>
+                        <li><a href="#year2" data-target="year2" class="cur-nav-link"><span class="cur-nav-num">2</span><span class="cur-nav-title">CBC Degree Track</span></a></li>
+                        <li><a href="#year3" data-target="year3" class="cur-nav-link"><span class="cur-nav-num">3</span><span class="cur-nav-title">CBC Global Track</span></a></li>
+                        <li><a href="#year4" data-target="year4" class="cur-nav-link"><span class="cur-nav-num">4</span><span class="cur-nav-title">CBC Career Track International</span></a></li>
+                    </ul>
+                </nav>
+
+                <div class="curriculum-cards-stack">
+                    <section id="year1" class="curriculum-card card-purple">
+                        <div class="curriculum-card-header">
+                            <div class="curriculum-title-row">
+                                <span class="curriculum-year-num" aria-hidden="true">1</span>
+                                <h3>CBC Skill Track</h3>
+                            </div>
+                            <p class="curriculum-card-subtitle">Classroom + On Job Training — fast-track your healthcare career with hands-on skills and industry-ready certification.</p>
+                            <div class="curriculum-metrics">
+                                <div class="curriculum-metric metric-purple">
+                                    <div class="curriculum-metric-value">1–2 Yr</div>
+                                    <div class="curriculum-metric-label">Duration</div>
+                                </div>
+                                <div class="curriculum-metric metric-purple">
+                                    <div class="curriculum-metric-value">₹0.7–2L</div>
+                                    <div class="curriculum-metric-label">Total Fees</div>
+                                </div>
+                                <div class="curriculum-metric metric-purple">
+                                    <div class="curriculum-metric-value">₹12–30K</div>
+                                    <div class="curriculum-metric-label">Salary Range</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="curriculum-card-body">
+                        <div class="curriculum-semesters">
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-purple">Program Details</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-purple" aria-hidden="true"></span>Classroom + On Job Training</li>
+                                    <li class="curriculum-course-item"><span class="bullet-cyan" aria-hidden="true"></span>Eligibility: 12th Pass</li>
+                                    <li class="curriculum-course-item"><span class="bullet-pink" aria-hidden="true"></span>Intake: Rolling Admissions</li>
+                                </ul>
+                            </div>
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-purple">Career Outcomes</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Salary Range: ₹12,000 – ₹30,000/month</li>
+                                    <li class="curriculum-course-item"><span class="bullet-cyan" aria-hidden="true"></span>Industry-recognised skill certification</li>
+                                    <li class="curriculum-course-item"><span class="bullet-purple" aria-hidden="true"></span>Direct placement assistance on completion</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="curriculum-bottom-tags">
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-purple" aria-hidden="true"></span>Healthcare</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-cyan" aria-hidden="true"></span>Certification</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-emerald" aria-hidden="true"></span>Placement</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-amber" aria-hidden="true"></span>On-Job Training</span>
+                        </div>
+                        </div><!-- /.curriculum-card-body -->
+                    </section>
+
+                    <section id="year2" class="curriculum-card card-cyan">
+                        <div class="curriculum-card-header">
+                            <div class="curriculum-title-row">
+                                <span class="curriculum-year-num" aria-hidden="true">2</span>
+                                <h3>CBC Degree Track</h3>
+                            </div>
+                            <p class="curriculum-card-subtitle">Full university degree with partnered University — specialise in allied health sciences with campus life, internships, and guaranteed career outcomes.</p>
+                            <div class="curriculum-metrics">
+                                <div class="curriculum-metric metric-cyan">
+                                    <div class="curriculum-metric-value">3–4.5 Yr</div>
+                                    <div class="curriculum-metric-label">Duration</div>
+                                </div>
+                                <div class="curriculum-metric metric-cyan">
+                                    <div class="curriculum-metric-value">₹3–10L</div>
+                                    <div class="curriculum-metric-label">Total Fees</div>
+                                </div>
+                                <div class="curriculum-metric metric-cyan">
+                                    <div class="curriculum-metric-value">₹20–45K</div>
+                                    <div class="curriculum-metric-label">Salary Range</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="curriculum-card-body">
+                        <div class="curriculum-semesters">
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-cyan">Specialisations</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-cyan" aria-hidden="true"></span>Nursing (B.Sc)</li>
+                                    <li class="curriculum-course-item"><span class="bullet-purple" aria-hidden="true"></span>Physiotherapy</li>
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Occupational Therapy (OT)</li>
+                                    <li class="curriculum-course-item"><span class="bullet-pink" aria-hidden="true"></span>Radiology &amp; Imaging</li>
+                                    <li class="curriculum-course-item"><span class="bullet-orange" aria-hidden="true"></span>Optometry</li>
+                                    <li class="curriculum-course-item"><span class="bullet-yellow" aria-hidden="true"></span>Audiology &amp; Speech Therapy</li>
+                                    <li class="curriculum-course-item"><span class="bullet-cyan" aria-hidden="true"></span>Microbiology / Dialysis &amp; More</li>
+                                </ul>
+                            </div>
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-cyan">Program Highlights</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Cambridge Healthcare English</li>
+                                    <li class="curriculum-course-item"><span class="bullet-purple" aria-hidden="true"></span>Personality Development</li>
+                                    <li class="curriculum-course-item"><span class="bullet-cyan" aria-hidden="true"></span>Clinical Internships</li>
+                                    <li class="curriculum-course-item"><span class="bullet-pink" aria-hidden="true"></span>Eligibility: 12th Pass with Biology</li>
+                                    <li class="curriculum-course-item"><span class="bullet-orange" aria-hidden="true"></span>Pathway: Campus → Internship</li>
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Intake: July 2026</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="curriculum-bottom-tags">
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-cyan" aria-hidden="true"></span>Nursing</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-emerald" aria-hidden="true"></span>Allied Health</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-purple" aria-hidden="true"></span>Campus Life</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-amber" aria-hidden="true"></span>Career</span>
+                        </div>
+                        </div><!-- /.curriculum-card-body -->
+                    </section>
+
+                    <section id="year3" class="curriculum-card card-green">
+                        <div class="curriculum-card-header">
+                            <div class="curriculum-title-row">
+                                <span class="curriculum-year-num" aria-hidden="true">3</span>
+                                <h3>CBC Global Track</h3>
+                            </div>
+                            <p class="curriculum-card-subtitle">Specialize in cutting-edge AI, lead research projects, and build enterprise-scale systems.</p>
+                            <div class="curriculum-metrics">
+                                <div class="curriculum-metric metric-green">
+                                    <div class="curriculum-metric-value">1</div>
+                                    <div class="curriculum-metric-label">Paid Internship</div>
+                                </div>
+                                <div class="curriculum-metric metric-green">
+                                    <div class="curriculum-metric-value">1</div>
+                                    <div class="curriculum-metric-label">Externship</div>
+                                </div>
+                                <div class="curriculum-metric metric-green">
+                                    <div class="curriculum-metric-value">6</div>
+                                    <div class="curriculum-metric-label">Projects</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="curriculum-card-body">
+                        <div class="curriculum-semesters">
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-green">Semester 5</div>
+                                <div class="curriculum-semester-tag semester-green">+Internship</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Industry Internship / Research Project - Full semester dedicated to real-world experience at partner companies or research institutions.</li>
+                                </ul>
+                            </div>
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-green">Semester 6</div>
+                                <div class="curriculum-semester-tag semester-green">+Externship</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-yellow" aria-hidden="true"></span>Machine Learning Engineering</li>
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Data Engineering for Robust AI Systems</li>
+                                    <li class="curriculum-course-item"><span class="bullet-purple" aria-hidden="true"></span>Deep Learning Systems</li>
+                                    <li class="curriculum-course-item"><span class="bullet-pink" aria-hidden="true"></span>Product Management for AI II: Execution, Experiments &amp; Metrics</li>
+                                    <li class="curriculum-course-item"><span class="bullet-orange" aria-hidden="true"></span>Mini-MBA 4: Operations, Hiring &amp; Org-Design</li>
+                                    <li class="curriculum-course-item"><span class="bullet-cyan" aria-hidden="true"></span>Externship 4</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="curriculum-bottom-tags">
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-purple" aria-hidden="true"></span>AI Engineering</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-cyan" aria-hidden="true"></span>AI Core</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-emerald" aria-hidden="true"></span>Industry Experience</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-amber" aria-hidden="true"></span>Mini-MBA</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-sky" aria-hidden="true"></span>CS Fundamentals</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-violet" aria-hidden="true"></span>Mathematics</span>
+                        </div>
+                        </div><!-- /.curriculum-card-body -->
+                    </section>
+
+                    <section id="year4" class="curriculum-card card-orange">
+                        <div class="curriculum-card-header">
+                            <div class="curriculum-title-row">
+                                <span class="curriculum-year-num" aria-hidden="true">4</span>
+                                <h3>CBC Career Track International</h3>
+                            </div>
+                            <p class="curriculum-card-subtitle">Lead teams, launch startups, and work on the next generation of autonomous AI systems.</p>
+                            <div class="curriculum-metrics">
+                                <div class="curriculum-metric metric-orange">
+                                    <div class="curriculum-metric-value">1</div>
+                                    <div class="curriculum-metric-label">Startup Incubation</div>
+                                </div>
+                                <div class="curriculum-metric metric-orange">
+                                    <div class="curriculum-metric-value">100%</div>
+                                    <div class="curriculum-metric-label">Job Guarantee</div>
+                                </div>
+                                <div class="curriculum-metric metric-orange">
+                                    <div class="curriculum-metric-value">∞</div>
+                                    <div class="curriculum-metric-label">Lifelong Access</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="curriculum-card-body">
+                        <div class="curriculum-semesters">
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-orange">Semester 7</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-orange" aria-hidden="true"></span>Product Management for AI at Scale</li>
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Scaling AI Systems (Infrastructure &amp; Cost)</li>
+                                    <li class="curriculum-course-item"><span class="bullet-purple" aria-hidden="true"></span>Leadership &amp; Team Dynamics</li>
+                                    <li class="curriculum-course-item"><span class="bullet-pink" aria-hidden="true"></span>Startup Incubation I</li>
+                                    <li class="curriculum-course-item"><span class="bullet-cyan" aria-hidden="true"></span>Advanced Elective</li>
+                                </ul>
+                            </div>
+                            <div class="curriculum-semester-box">
+                                <div class="curriculum-semester-tag semester-orange">Semester 8</div>
+                                <div class="curriculum-semester-tag semester-orange">+Final Launch</div>
+                                <ul class="curriculum-course-list">
+                                    <li class="curriculum-course-item"><span class="bullet-yellow" aria-hidden="true"></span>Startup Incubation II (Demo Day)</li>
+                                    <li class="curriculum-course-item"><span class="bullet-orange" aria-hidden="true"></span>Deployment &amp; Reliability Engineering</li>
+                                    <li class="curriculum-course-item"><span class="bullet-green" aria-hidden="true"></span>Executive Communication &amp; Negotiation</li>
+                                    <li class="curriculum-course-item"><span class="bullet-purple" aria-hidden="true"></span>Final Capstone Launch</li>
+                                    <li class="curriculum-course-item"><span class="bullet-pink" aria-hidden="true"></span>Career Acceleration Program</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="curriculum-bottom-tags">
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-amber" aria-hidden="true"></span>Leadership</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-emerald" aria-hidden="true"></span>Startup</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-cyan" aria-hidden="true"></span>Scale</span>
+                            <span class="curriculum-bottom-tag"><span class="curriculum-tag-dot tag-dot-purple" aria-hidden="true"></span>Career</span>
+                        </div>
+                        </div><!-- /.curriculum-card-body -->
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Trends vs Traditional Education -->
+    <section id="ai-trends" class="section">
+        <div class="container" style="max-width: 1400px;">
+            <div class="section-header center reveal-up">
+                <span class="section-label">THE WORLD IS CHANGING</span>
+                <h2 class="section-title">Why Not Just a <span class="text-accent">Regular B.Tech?</span></h2>
+                <p class="section-desc mt-3">The job market of 2030 won't look like 2019's. Here's what's happening.</p>
+            </div>
+
+            <!-- Trend Cards Grid -->
+            <div class="ai-trends-grid">
+                <!-- Trend 1 -->
+                <div class="reveal-up">
+                    <div class="trend-card">
+                        <div class="chart-placeholder">
+                            <canvas id="chart1"></canvas>
+                        </div>
+                        <h4>Pace of change is accelerating</h4>
+                        <p>The speed of innovation is accelerating. If you don't keep pace, you become a dinosaur very soon. <span class="text-purple-400">Outdated curriculum → Stagnate age</span></p>
+                    </div>
+                </div>
+
+                <!-- Trend 2 -->
+                <div class="reveal-up">
+                    <div class="trend-card">
+                        <div class="chart-placeholder">
+                            <canvas id="chart2"></canvas>
+                        </div>
+                        <h4>Service Jobs Are Dying</h4>
+                        <p>Service jobs are on clear deathbed. They are getting replaced by higher value jobs in <span class="text-yellow-400">GCCs / Startups / Old Jobs → Dead</span></p>
+                    </div>
+                </div>
+
+                <!-- Trend 3 -->
+                <div class="reveal-up">
+                    <div class="trend-card">
+                        <div class="chart-placeholder">
+                            <canvas id="chart3"></canvas>
+                        </div>
+                        <h4>AI is Replacing Entry-Level Work</h4>
+                        <p>Old fresher jobs increasingly getting automated. <span class="text-green-400">Real jobs experience → Future ready jobs</span></p>
+                    </div>
+                </div>
+
+                <!-- Trend 4 -->
+                <div class="reveal-up">
+                    <div class="trend-card">
+                        <div class="chart-placeholder">
+                            <canvas id="chart4"></canvas>
+                        </div>
+                        <h4>The Package Gap is Widening</h4>
+                        <p><span class="text-green-400">Average package: 3-5L, AI/ML engineer package: 20-30L</span>. Choose your path.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparison Cards -->
+            <div class="ai-trends-grid">
+                <!-- Zenith AI -->
+                <div class="reveal-up">
+                    <div class="comparison-card ai-card">
+                        <div class="comparison-header ai-header">
+                            <h4>School of AI</h4>
+                        </div>
+                        <ul class="comparison-list">
+                            <li class="comparison-item">
+                                <span class="check-icon">✓</span>
+                                <span>Curriculum by AI researchers. Taught by Industry professionals</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="check-icon">✓</span>
+                                <span>4 externships + 2 paid internships</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="check-icon">✓</span>
+                                <span>6-module High-RBI Integrated</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="check-icon">✓</span>
+                                <span>Start coding from day 1 and start working in Industry from year 1</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="check-icon">✓</span>
+                                <span>Graduate with portfolio + network + skills</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Traditional B.Tech -->
+                <div class="reveal-up">
+                    <div class="comparison-card traditional-card">
+                        <div class="comparison-header traditional-header">
+                            <h4>Traditional B.Tech</h4>
+                        </div>
+                        <ul class="comparison-list">
+                            <li class="comparison-item">
+                                <span class="cross-icon">⚠</span>
+                                <span>Outdated curriculum updated every 10-15 years</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="cross-icon">⚠</span>
+                                <span>Theory heavy, exam-focused</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="cross-icon">⚠</span>
+                                <span>No buildtech or product skills</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="cross-icon">⚠</span>
+                                <span>Struggle to get 1 Internship in final year</span>
+                            </li>
+                            <li class="comparison-item">
+                                <span class="cross-icon">⚠</span>
+                                <span>Graduate with CGPA, hope for placement</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="section why-section" id="why-us">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label reveal-up">Why Career Buddy Tech</span>
+                <h2 class="section-title reveal-up">Education Reimagined for the Digital Age</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal-up">
+                    <div class="why-num">01</div>
+                    <h3>Industry-Curated Curriculum</h3>
+                    <p>Programs designed with input from 50+ top tech companies ensuring you learn what employers need.</p>
+                </div>
+                <div class="why-card reveal-up">
+                    <div class="why-num">02</div>
+                    <h3>Live Project Experience</h3>
+                    <p>Work on real-world projects from day one. Build a portfolio that speaks louder than any degree.</p>
+                </div>
+                <div class="why-card reveal-up">
+                    <div class="why-num">03</div>
+                    <h3>1:1 Mentor Support</h3>
+                    <p>Personal mentors from Google, Amazon, Microsoft guide your journey with weekly sessions.</p>
+                </div>
+                <div class="why-card reveal-up">
+                    <div class="why-num">04</div>
+                    <h3>Guaranteed Placements</h3>
+                    <p>98% placement rate with dedicated career services, mock interviews, and direct referrals.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials-section" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label reveal-up">Testimonials</span>
+                <h2 class="section-title reveal-up">Our Past Success Stories</h2>
+            </div>
+            <div class="swiper stories-swiper reveal-up">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="story-card">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop" alt="Rahul Sharma" class="story-avatar">
+                            <h4>Rahul Sharma</h4>
+                            <span class="story-role">Software Engineer @ Google</span>
+                            <p>Career Buddy Tech's CS/IT program gave me the skills and confidence to crack Google. The hands-on approach transformed me completely.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="story-card">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop" alt="Priya Patel" class="story-avatar">
+                            <h4>Priya Patel</h4>
+                            <span class="story-role">Product Manager @ Amazon</span>
+                            <p>The Tech & Business program perfectly blended my passion for tech and leadership. Now I ship products used by millions.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="story-card">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&h=120&fit=crop" alt="Arjun Mehta" class="story-avatar">
+                            <h4>Arjun Mehta</h4>
+                            <span class="story-role">Founder, TechNova Startup</span>
+                            <p>The incubation lab helped me launch my startup while still in college. Raised ₹2Cr in seed funding before graduation.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="story-card">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=120&h=120&fit=crop" alt="Ananya Reddy" class="story-avatar">
+                            <h4>Ananya Reddy</h4>
+                            <span class="story-role">Data Scientist @ Microsoft</span>
+                            <p>AI/ML specialization was a game-changer. Real datasets, real problems, real impact from semester one.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mentors -->
+    <section class="section mentors-section" id="mentors">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label reveal-up">Learn From The Best</span>
+                <h2 class="section-title reveal-up">Taught by Professionals from Top Tech Companies</h2>
+            </div>
+            <div class="mentors-slider-wrapper reveal-up">
+                <div class="swiper mentors-swiper">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300&h=350&fit=crop" alt="Dr. Rajesh Kumar" loading="lazy"></div>
+                            <h4>Dr. Rajesh Kumar</h4>
+                            <p class="mentor-title">Ex-Google · AI Research Lead</p>
+                            <div class="mentor-creds">
+                                <span>🎓 IIT Delhi</span>
+                                <span>💼 Ex-Google</span>
+                                <span>👨‍💻 15+ Years</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=350&fit=crop" alt="Sneha Iyer" loading="lazy"></div>
+                            <h4>Sneha Iyer</h4>
+                            <p class="mentor-title">Ex-Amazon · VP Product</p>
+                            <div class="mentor-creds">
+                                <span>🎓 IIM Ahmedabad</span>
+                                <span>💼 Ex-Amazon</span>
+                                <span>🏆 100M+ Users</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1519081908943-0c06b011f527?w=300&h=350&fit=crop" alt="Michael Chen" loading="lazy"></div>
+                            <h4>Michael Chen</h4>
+                            <p class="mentor-title">Ex-Microsoft · Cloud Architect</p>
+                            <div class="mentor-creds">
+                                <span>🎓 IIT Bombay</span>
+                                <span>💼 Ex-Microsoft</span>
+                                <span>☁️ AWS Certified</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=350&fit=crop" alt="Dr. Anjali Desai" loading="lazy"></div>
+                            <h4>Dr. Anjali Desai</h4>
+                            <p class="mentor-title">Ex-Meta · Data Science Director</p>
+                            <div class="mentor-creds">
+                                <span>🎓 PhD CSE</span>
+                                <span>💼 Ex-Meta</span>
+                                <span>📄 40+ Papers</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=300&h=350&fit=crop" alt="Priya Sharma" loading="lazy"></div>
+                            <h4>Priya Sharma</h4>
+                            <p class="mentor-title">Ex-Netflix · Senior Engineer</p>
+                            <div class="mentor-creds">
+                                <span>🎓 BITS Pilani</span>
+                                <span>💼 Ex-Netflix</span>
+                                <span>🚀 Scalability</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=350&fit=crop" alt="David Kim" loading="lazy"></div>
+                            <h4>David Kim</h4>
+                            <p class="mentor-title">Ex-Apple · Core Tech Lead</p>
+                            <div class="mentor-creds">
+                                <span>🎓 Stanford</span>
+                                <span>💼 Ex-Apple</span>
+                                <span>📱 12+ Years</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300&h=350&fit=crop" alt="Riya Gupta" loading="lazy"></div>
+                            <h4>Riya Gupta</h4>
+                            <p class="mentor-title">Ex-Spotify · ML Engineer</p>
+                            <div class="mentor-creds">
+                                <span>🎓 NIT Trichy</span>
+                                <span>💼 Ex-Spotify</span>
+                                <span>🎵 RecSys</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="mentor-card" data-tilt>
+                            <div class="mentor-img"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=350&fit=crop" alt="James Wilson" loading="lazy"></div>
+                            <h4>James Wilson</h4>
+                            <p class="mentor-title">Ex-Tesla · Vision Lead</p>
+                            <div class="mentor-creds">
+                                <span>🎓 MIT</span>
+                                <span>💼 Ex-Tesla</span>
+                                <span>🚗 Autopilot</span>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scholarships -->
+    <section class="section scholarships-section">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label reveal-up">Financial Aid</span>
+                <h2 class="section-title reveal-up">Scholarships & Waivers</h2>
+            </div>
+            <div class="scholarship-grid reveal-up">
+                <div class="scholarship-card"><span class="sch-num">01</span><h4>Merit Excellence</h4><p>Up to ₹5L Waiver + MacBook</p></div>
+                <div class="scholarship-card"><span class="sch-num">02</span><h4>Women in Tech</h4><p>₹4L Waiver</p></div>
+                <div class="scholarship-card"><span class="sch-num">03</span><h4>First-Gen Leaders</h4><p>₹3L Waiver</p></div>
+                <div class="scholarship-card"><span class="sch-num">04</span><h4>Career Buddy Ascend</h4><p>₹2L/yr Waiver</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq-section" id="faq">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-label reveal-up">FAQ</span>
+                <h2 class="section-title reveal-up">Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-list reveal-up">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false"><span>What are the eligibility criteria?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Class 12th with minimum 60% marks. Science/Commerce stream accepted. Strong aptitude test scores considered for all streams.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false"><span>How does the placement guarantee work?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>We guarantee placement assistance to all students maintaining 75% attendance and completing mandatory projects. Our 98% rate reflects students meeting these criteria.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false"><span>Are scholarships available?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Yes — merit-based scholarships up to 100% tuition waiver, need-based aid, and special scholarships for women in tech and first-generation learners.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false"><span>CS/IT vs Tech & Business — what's the difference?</span><span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>CS/IT focuses on software engineering, cloud, AI/ML for technical roles. Tech & Business blends technology with product management and entrepreneurship for leadership roles.</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Apply -->
+    <section class="section contact-section" id="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info reveal-up">
+                    <span class="section-label">Get In Touch</span>
+                    <h2 class="section-title">Ready to Join the<br><span class="text-accent">2026 Cohort?</span></h2>
+                    <p class="section-desc">Take the first step. Our admissions team is ready to guide you through the process.</p>
+                    <div class="contact-details">
+                        <div class="contact-item"><span>📧</span><div><strong>Email</strong><span>admissions@careerbuddy.tech</span></div></div>
+                        <div class="contact-item"><span>📞</span><div><strong>Phone</strong><span>+91 98765 43210</span></div></div>
+                        <div class="contact-item"><span>📍</span><div><strong>Campus</strong><span>Tech Park, Bangalore, India</span></div></div>
+                    </div>
+                </div>
+                <form class="contact-form reveal-up" id="apply" action="#" method="POST">
+                    <h3>Apply Now</h3>
+                    <div class="form-group"><input type="text" name="name" placeholder="Full Name" required></div>
+                    <div class="form-group"><input type="email" name="email" placeholder="Email Address" required></div>
+                    <div class="form-group"><input type="tel" name="phone" placeholder="Phone Number" required></div>
+                    <div class="form-group">
+                        <select name="program" required>
+                            <option value="" disabled selected>Select Program</option>
+                            <option value="csit">UG Program in CS/IT</option>
+                            <option value="techbiz">UG Program in Tech & Business Management</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><textarea name="message" placeholder="Tell us about yourself..." rows="4"></textarea></div>
+                    <button type="submit" class="btn btn-primary btn-lg magnetic-btn w-full"><span class="btn-text">Submit Application</span></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="logo"><span class="logo-mark">CB</span><span class="logo-text">Career Buddy <em>Tech</em></span></a>
+                    <p>Empowering the next generation of tech innovators with premium, industry-ready education.</p>
+                </div>
+                <div class="footer-links"><h4>Programs</h4><a href="#programs">CS/IT</a><a href="#programs">Tech & Business</a><a href="#apply">Apply Now</a></div>
+                <div class="footer-links"><h4>Company</h4><a href="#why-us">About</a><a href="#testimonials">Stories</a><a href="#faq">FAQ</a></div>
+                <div class="footer-links"><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a></div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <?php echo date('Y'); ?> Career Buddy Tech. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/script.js?v=<?php echo $assetVer('assets/script.js'); ?>"></script>
+</body>
+</html>
