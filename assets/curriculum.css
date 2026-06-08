@@ -1,8 +1,18 @@
 /* Premium Curriculum — stacking cards (loaded after style.css) */
 .container--curriculum { max-width: 1450px; }
 
-/* Card body always visible (no accordion) */
-.curriculum-card-body { display: block; }
+/* Card body with scrollable content to ensure consistent stacking height */
+.curriculum-card-body { 
+    display: block; 
+    max-height: 440px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.curriculum-card-body::-webkit-scrollbar { width: 5px; }
+.curriculum-card-body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
+.curriculum-card-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+
 
 .curriculum-path-badge {
     display: inline-block;
@@ -121,7 +131,7 @@
 .cur-nav-list li:nth-child(3) .cur-nav-link.active::before { background: #4ade80; box-shadow: 0 0 15px rgba(74, 222, 128, 0.8); }
 .cur-nav-list li:nth-child(4) .cur-nav-link.active::before { background: #fb923c; box-shadow: 0 0 15px rgba(251, 146, 60, 0.8); }
 
-.curriculum-cards-stack { padding-bottom: 400px; }
+.curriculum-cards-stack { padding-bottom: 40vh; }
 
 .curriculum-card {
     position: sticky;
@@ -130,7 +140,7 @@
     padding: 28px;
     margin-bottom: 20px;
     border: 2px solid transparent;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
     /* Ensure proper stacking context */
     will-change: transform;
 }
@@ -157,6 +167,20 @@
     background: linear-gradient(135deg, rgba(35, 20, 8, 0.97), rgba(22, 12, 5, 0.97));
     box-shadow: 0 8px 32px rgba(251, 146, 60, 0.06);
 }
+.curriculum-card.card-white {
+    border-color: rgba(0, 0, 0, 1);
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+    color: #0f172a;
+}
+.curriculum-card.card-white .curriculum-year-num { color: #0a0a0a; opacity: 1; }
+.curriculum-card.card-white .curriculum-card-header h3 { color: #0f172a; }
+.curriculum-card.card-white .curriculum-card-subtitle { color: #475569; }
+.curriculum-card.card-white .curriculum-course-item { color: #334155; }
+.curriculum-card.card-white .curriculum-metric-value { color: #0f172a; }
+.curriculum-card.card-white .curriculum-metric-label { color: #64748b; }
+.curriculum-card.card-white .curriculum-bottom-tag { background: #f1f5f9; color: #334155; border: 1px solid #e2e8f0; }
+.curriculum-card.card-white .curriculum-semester-box { background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
 
 #curriculum #year1 { top: calc(var(--nav-h) + var(--ticker-h) + 16px); z-index: 1; }
 #curriculum #year2 { top: calc(var(--nav-h) + var(--ticker-h) + 40px); z-index: 2; }
@@ -285,6 +309,8 @@
 .metric-cyan .curriculum-metric-value { color: #22d3ee; text-shadow: 0 0 15px rgba(6, 182, 212, 0.7); }
 .metric-green { border-color: rgba(34, 197, 94, 0.5); background: rgba(34, 197, 94, 0.08); }
 .metric-green .curriculum-metric-value { color: #4ade80; text-shadow: 0 0 15px rgba(34, 197, 94, 0.7); }
+.metric-white { border-color: rgba(226, 232, 240, 1); background: rgba(241, 245, 249, 1); }
+.metric-white .curriculum-metric-value { color: #0f172a; text-shadow: none; }
 .metric-orange { border-color: rgba(249, 115, 22, 0.5); background: rgba(249, 115, 22, 0.08); }
 .metric-orange .curriculum-metric-value { color: #fb923c; text-shadow: 0 0 15px rgba(249, 115, 22, 0.7); }
 
@@ -315,7 +341,8 @@
 }
 
 .curriculum-semester-tag {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     padding: 6px 16px;
     border-radius: 20px;
     font-size: 14px;
@@ -328,6 +355,8 @@
 .semester-cyan { background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(6, 182, 212, 0.15)); color: #67e8f9; text-shadow: 0 0 10px rgba(6, 182, 212, 0.5); }
 .semester-green { background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(34, 197, 94, 0.15)); color: #86efac; text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
 .semester-orange { background: linear-gradient(135deg, rgba(249, 115, 22, 0.3), rgba(249, 115, 22, 0.15)); color: #fdba74; text-shadow: 0 0 10px rgba(249, 115, 22, 0.5); }
+.semester-white { background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05)); color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.1); }
+.semester-dark { background: #1e293b; color: #ffffff; border: 1px solid #334155; }
 
 .curriculum-course-list {
     display: flex;
@@ -512,7 +541,7 @@
     #curriculum #year3 { top: calc(var(--nav-h) + var(--ticker-h) + 64px + 36px); z-index: 3; }
     #curriculum #year4 { top: calc(var(--nav-h) + var(--ticker-h) + 64px + 54px); z-index: 4; }
 
-    .curriculum-cards-stack { padding-bottom: 300px; min-width: 0; width: 100%; }
+    .curriculum-cards-stack { padding-bottom: 80vh; min-width: 0; width: 100%; }
 
     .curriculum-metrics { justify-content: flex-start; gap: 10px; flex-wrap: wrap; }
     .curriculum-metric { min-width: 90px; padding: 8px 12px; }
@@ -593,7 +622,7 @@
     #curriculum #year3 { top: calc(var(--nav-h) + var(--ticker-h) + 56px + 24px); z-index: 3; }
     #curriculum #year4 { top: calc(var(--nav-h) + var(--ticker-h) + 56px + 36px); z-index: 4; }
 
-    .curriculum-cards-stack { padding-bottom: 200px; }
+    .curriculum-cards-stack { padding-bottom: 80vh; }
 
     .curriculum-card {
         padding: 20px 16px;
@@ -701,21 +730,4 @@
     .curriculum-section .cur-nav-link { padding: 6px 10px; min-height: 36px; }
 }
 
-/* ── Alias overrides (keeps old class names working) ── */
-#curriculum .main-container,
-.curriculum-layout { display: grid; grid-template-columns: 280px 1fr; gap: 60px; align-items: start; }
-
-#curriculum .sidebar-nav,
-.curriculum-sidebar { position: sticky; top: calc(var(--nav-h) + var(--ticker-h) + 16px); padding: 24px 0; }
-
-#curriculum .cards-stack,
-.curriculum-cards-stack { padding-bottom: 400px; }
-
-@media (max-width: 991.98px) {
-    #curriculum .main-container,
-    .curriculum-layout { grid-template-columns: 1fr; gap: 0; }
-    #curriculum .sidebar-nav,
-    .curriculum-sidebar { position: sticky; top: calc(var(--nav-h) + var(--ticker-h)); padding: 10px 0; }
-    #curriculum .cards-stack,
-    .curriculum-cards-stack { padding-bottom: 300px; }
-}
+/* --- end of file --- */
