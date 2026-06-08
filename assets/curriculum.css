@@ -533,14 +533,27 @@
         border-radius: 2px;
     }
 
-    /* Semester boxes stack vertically on tablet for cards with many items */
+    /* Horizontally scrollable semester boxes on tablet */
     .curriculum-semesters {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
         gap: 16px;
         padding-bottom: 8px;
         width: 100%;
-        align-items: stretch;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+    }
+    .curriculum-semesters::-webkit-scrollbar {
+        display: none;
+    }
+    .curriculum-semester-box {
+        flex: 0 0 45%;
+        min-width: 300px;
+        scroll-snap-align: start;
     }
 }
 
@@ -639,22 +652,34 @@
         border-radius: 2px;
     }
 
-    /* Vertical stacked semester boxes on mobile for readability */
+    /* Horizontally scrollable semester boxes on mobile */
     .curriculum-semesters {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: nowrap;
         gap: 12px;
         margin-bottom: 16px;
-        padding-bottom: 0;
+        padding-bottom: 8px;
         width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+    }
+    
+    .curriculum-semesters::-webkit-scrollbar {
+        display: none;
     }
     
     .curriculum-semester-box {
         padding: 14px;
         border-radius: 12px;
-        flex: none;
-        max-width: 100%;
-        width: 100%;
+        flex: 0 0 88%;
+        min-width: 88%;
+        max-width: 88%;
+        width: 88%;
+        scroll-snap-align: start;
     }
     .curriculum-semester-tag { font-size: 13px; padding: 6px 14px; margin-bottom: 12px; border-radius: 20px; }
     .curriculum-course-item  { font-size: 13px; gap: 10px; padding: 4px 0; }
