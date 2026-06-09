@@ -9,14 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <?php
-    $assetVer = static function (string $file): string {
-        $path = __DIR__ . '/' . $file;
-        return file_exists($path) ? (string) filemtime($path) : '1';
-    };
-    ?>
-    <link rel="stylesheet" href="assets/style.css?v=<?php echo $assetVer('assets/style.css'); ?>">
-    <link rel="stylesheet" href="assets/curriculum.css?v=<?php echo $assetVer('assets/curriculum.css'); ?>">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/curriculum.css">
 </head>
 <body>
 
@@ -54,8 +48,7 @@
         <div class="container nav-container">
             <a href="#" class="logo">
                 <span class="logo-img"><img src="assets/images/cbc.logo.png" alt="Career Buddy Tech Logo"></span>
-                <!-- <span class="logo-mark">CB</span>
-                <span class="logo-text">Career Buddy <em>Tech</em></span> -->
+                
             </a>
             <nav class="nav-links" id="navLinks">
                 <a href="#programs" class="nav-link">Programs</a>
@@ -85,13 +78,6 @@
                 <p class="hero-sub reveal-up">
                     4-year degree programs. Get your future-ready edge to the top 1% — in tech, in business, in leadership.
                 </p>
-                <div class="hero-actions reveal-up">
-                    <a href="#apply" class="btn btn-primary btn-lg magnetic-btn">
-                        <span class="btn-text">Apply for the 2026 cohort</span>
-                        <span class="btn-shine"></span>
-                    </a>
-                    <span class="seats-badge">Only 120 seats</span>
-                </div>
 
                 <div class="countdown-box reveal-up">
                     <p class="countdown-label">NEXT INTAKE CLOSES IN:</p>
@@ -103,30 +89,35 @@
                     </div>
                 </div>
 
-                <div class="hero-stats-row reveal-up">
-                    <div class="hero-stat">
-                        <strong><span data-count="500">0</span>+</strong>
-                        <span>Students Placed</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>₹<span data-count="18">0</span>L+</strong>
-                        <span>Avg Placement</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>₹<span data-count="45">0</span>L</strong>
-                        <span>Highest Package</span>
-                    </div>
+                <div class="hero-actions reveal-up">
+                    <a href="#apply" class="btn btn-primary btn-lg magnetic-btn">
+                        <span class="btn-text">Apply for the 2026 cohort</span>
+                        <span class="btn-shine"></span>
+                    </a>
+                    <a href="#programs" class="btn btn-outline-hero magnetic-btn">Explore Programs</a>
                 </div>
+
+                <span class="seats-badge reveal-up">Only 120 seats — 2026 Batch</span>
             </div>
 
             <div class="hero-right reveal-up">
-                <div class="video-frame">
-                    <div class="video-frame-glow"></div>
-                    <div class="video-placeholder">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=500&fit=crop" alt="Students learning technology" loading="eager">
-                        <button class="play-btn" aria-label="Play video">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                        </button>
+                <div class="hero-image-wrapper">
+                    <div class="hero-person-img">
+                        <img src="assets/images/nurs.png" alt="Students learning technology" loading="eager">
+                    </div>
+
+                    <!-- Floating stat badges -->
+                    <div class="hero-float-badge badge-top-right">
+                        <strong><span data-count="500">0</span>+</strong>
+                        <span>Students Placed</span>
+                    </div>
+                    <div class="hero-float-badge badge-mid-left">
+                        <strong>₹<span data-count="18">0</span>L+</strong>
+                        <span>Avg Placement</span>
+                    </div>
+                    <div class="hero-float-badge badge-bottom-right">
+                        <strong>₹<span data-count="45">0</span>L</strong>
+                        <span>Highest Package</span>
                     </div>
                 </div>
             </div>

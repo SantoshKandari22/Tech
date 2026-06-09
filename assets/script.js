@@ -111,6 +111,11 @@
         let isNavigating = false;
         let navigationTimer = null;
 
+        // Global navigation flag — set by both curriculum nav AND main navbar/anchor links
+        // so the curriculum scroll listener doesn't fight with any in-progress smooth scroll.
+        let isNavigatingGlobal = false;
+        let globalNavTimer = null;
+
         function scrollToCard(targetCard, index) {
             if (!targetCard) return;
 
@@ -127,12 +132,17 @@
             const targetY = Math.max(0, cardPageTop - desiredViewportTop);
 
             isNavigating = true;
+            isNavigatingGlobal = true;
             setActiveNav(targetCard.id, true);
 
             // Clear any pending navigation finish timer
             if (navigationTimer) {
                 clearTimeout(navigationTimer);
                 navigationTimer = null;
+            }
+            if (globalNavTimer) {
+                clearTimeout(globalNavTimer);
+                globalNavTimer = null;
             }
 
             // Stop any in-flight Lenis animation before starting a new one
@@ -145,20 +155,22 @@
                     onComplete: () => {
                         navigationTimer = setTimeout(() => {
                             isNavigating = false;
+                            isNavigatingGlobal = false;
                             cacheCardOffsets(); // re-cache at final position
                             const m = getStackMetrics();
                             updateActiveNav(m.stickyTop, m.stackBase, m.stackStep);
-                        }, 100);
+                        }, 150);
                     }
                 });
             } else {
                 window.scrollTo({ top: targetY, behavior: 'smooth' });
                 navigationTimer = setTimeout(() => {
                     isNavigating = false;
+                    isNavigatingGlobal = false;
                     cacheCardOffsets(); // re-cache at final position
                     const m = getStackMetrics();
                     updateActiveNav(m.stickyTop, m.stackBase, m.stackStep);
-                }, 1000);
+                }, 1200);
             }
         }
 
@@ -168,9 +180,17 @@
             navLinks.forEach((link) => {
                 link.classList.toggle('active', link.dataset.target === cardId);
             });
+            // Only scroll the sidebar nav into view when NOT during a page-level
+            // smooth-scroll (scrollIntoView can hijack the page scroll position).
             const activeLink = section.querySelector(`.cur-nav-link[data-target="${cardId}"]`);
-            if (activeLink) {
-                activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (activeLink && !isNavigatingGlobal && !window.__cbtNavLock) {
+                // Use the sidebar's own scrollable container instead of scrollIntoView
+                // to avoid triggering a competing page-level scroll.
+                const sidebar = activeLink.closest('.curriculum-sidebar');
+                if (sidebar) {
+                    const linkTop = activeLink.offsetTop - sidebar.offsetTop;
+                    sidebar.scrollTo({ top: linkTop - sidebar.clientHeight / 2, behavior: 'smooth' });
+                }
             }
         }
 
@@ -199,20 +219,28 @@
                 navLinks.forEach((link) => {
                     link.classList.toggle('active', link.dataset.target === activeId);
                 });
-                const activeLink = section.querySelector(`.cur-nav-link[data-target="${activeId}"]`);
-                if (activeLink && !isNavigating) {
-                    activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                // Only update sidebar scroll when not navigating (avoids fighting
+                // with any in-progress smooth scroll animation).
+                if (!isNavigating && !isNavigatingGlobal && !window.__cbtNavLock) {
+                    const activeLink = section.querySelector(`.cur-nav-link[data-target="${activeId}"]`);
+                    if (activeLink) {
+                        const sidebar = activeLink.closest('.curriculum-sidebar');
+                        if (sidebar) {
+                            const linkTop = activeLink.offsetTop - sidebar.offsetTop;
+                            sidebar.scrollTo({ top: linkTop - sidebar.clientHeight / 2, behavior: 'smooth' });
+                        }
+                    }
                 }
             }
         }
 
         let scrollTicking = false;
         function onScrollUpdateNav() {
-            if (isNavigating || scrollTicking) return;
+            if (isNavigating || isNavigatingGlobal || window.__cbtNavLock || scrollTicking) return;
             scrollTicking = true;
             requestAnimationFrame(() => {
                 scrollTicking = false;
-                if (isNavigating) return;
+                if (isNavigating || isNavigatingGlobal || window.__cbtNavLock) return;
 
                 const { stickyTop, stackBase, stackStep } = getStackMetrics();
                 updateActiveNav(stickyTop, stackBase, stackStep);
@@ -528,8 +556,23 @@
         document.querySelectorAll('a[href^="#"]').forEach((a) => {
             if (a.closest('.curriculum-section .curriculum-sidebar')) return;
             a.addEventListener('click', (e) => {
-                const t = document.querySelector(a.getAttribute('href'));
-                if (t && lenis) { e.preventDefault(); lenis.scrollTo(t, { offset: -110, duration: 1.4 }); }
+                const href = a.getAttribute('href');
+                if (!href || href === '#') return;
+                const t = document.querySelector(href);
+                if (t && lenis) {
+                    e.preventDefault();
+
+                    // Signal the curriculum scroll handler to stop fighting
+                    window.__cbtNavLock = true;
+
+                    lenis.scrollTo(t, {
+                        offset: -110,
+                        duration: 1.4,
+                        onComplete: () => {
+                            setTimeout(() => { window.__cbtNavLock = false; }, 150);
+                        }
+                    });
+                }
             });
         });
     }
@@ -594,7 +637,7 @@
             .from('.hero-sub', { opacity: 0, y: 24, duration: 0.7 }, '-=0.5')
             .from('.hero-actions', { opacity: 0, y: 24, duration: 0.7 }, '-=0.4')
             .from('.countdown-box', { opacity: 0, y: 24, duration: 0.7 }, '-=0.3')
-            .from('.hero-stats-row', { opacity: 0, y: 24, duration: 0.7 }, '-=0.3')
+            .from('.hero-float-badge', { opacity: 0, scale: 0.8, duration: 0.7, stagger: 0.1 }, '-=0.3')
             .from('.hero-right', { opacity: 0, x: 40, duration: 0.9 }, '-=0.8');
 
         // Animate hero stats on load (they are already in viewport)
