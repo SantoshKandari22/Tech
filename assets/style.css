@@ -1,5 +1,5 @@
 /* ============================================
-   Career Buddy Tech — Zenith-Inspired Theme
+   Career Buddy Tech
    ============================================ */
 
 :root {
@@ -50,13 +50,13 @@ button { border: none; background: none; cursor: none; font-family: inherit; col
 
 .container {
     width: 100%;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-.logo-img{
-    width:80px; height: 80px; object-fit: contain;
+.logo-img {
+    width: 25px; height:25px; object-fit:cover; display: flex;
 }
 
 /* --- Cursor --- */
@@ -170,6 +170,10 @@ body.cursor-hover .cursor-dot {
     position: fixed; top: var(--ticker-h); left: 0; right: 0; z-index: 1000;
     height: var(--nav-h); transition: background 0.4s, border-color 0.4s;
     border-bottom: 1px solid transparent;
+}
+
+.logo-sup{
+    color:red; font-size:1rem; font-weight:700; margin-left:2px;
 }
 .navbar.scrolled {
     background: rgba(5, 5, 5, 0.92); backdrop-filter: blur(16px);
@@ -362,6 +366,7 @@ body.cursor-hover .cursor-dot {
     position: relative; background: var(--bg-card); border: 1px solid var(--border);
     border-radius: var(--radius-lg); padding: 36px; overflow: hidden;
     transition: border-color 0.4s, transform 0.4s var(--ease);
+    display: flex; flex-direction: column; height: auto;
 }
 .program-card:hover { border-color: rgba(36, 144, 56, 0.35); transform: translateY(-6px); }
 .program-card--featured { border-color: rgba(36, 144, 56, 0.25); }
@@ -378,19 +383,29 @@ body.cursor-hover .cursor-dot {
     font-size: 0.7rem; font-weight: 600; color: var(--accent);
     padding: 4px 10px; border: 1px solid rgba(36, 144, 56, 0.25); border-radius: 100px;
     background: var(--accent-soft);
+    display: inline-flex; align-items: center; gap: 6px;
 }
-.program-duration { font-size: 0.75rem; color: var(--text-dim); }
+.flag-icon {
+    width: 16px; height: 12px; object-fit: cover; border-radius: 2px;
+}
+.program-duration { font-size: 0.75rem; color: var(--text-dim); margin-right:2rem;}
 .program-name { font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 12px; line-height: 1.3; }
 .program-desc { font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 24px; }
 .program-metrics { display: flex; gap: 32px; margin-bottom: 20px; }
-.program-metrics strong { display: block; font-family: var(--font-display); font-size: 1.1rem; color: var(--white); }
+.program-metrics strong { 
+    display: block; 
+    font-family: var(--font-display); 
+    font-size: 1.1rem; 
+    color: var(--white); 
+    text-align: center ;
+}
 .program-metrics span { font-size: 0.75rem; color: var(--text-dim); }
 .program-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
 .program-tags li {
     font-size: 0.75rem; color: var(--text-muted); padding: 4px 12px;
     background: var(--bg-3); border-radius: 100px; border: 1px solid var(--border);
 }
-.program-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.program-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: auto; }
 
 /* --- Campus --- */
 .campus-section {

@@ -500,6 +500,13 @@
             breakpoints: { 640: { slidesPerView: 2.2 }, 1024: { slidesPerView: 3.2 } },
         });
 
+        new Swiper('.programs-swiper', {
+            slidesPerView: 1, spaceBetween: 24, loop: true,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            pagination: { el: '.programs-swiper .swiper-pagination', clickable: true },
+            breakpoints: { 768: { slidesPerView: 2 } },
+        });
+
         new Swiper('.campus-swiper', {
             slidesPerView: 1, loop: true, autoplay: { delay: 3500 },
             pagination: { el: '.campus-swiper .swiper-pagination', clickable: true },
