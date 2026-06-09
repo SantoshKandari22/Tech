@@ -622,7 +622,7 @@
     #curriculum #year3 { top: calc(var(--nav-h) + var(--ticker-h) + 56px + 24px); z-index: 3; }
     #curriculum #year4 { top: calc(var(--nav-h) + var(--ticker-h) + 56px + 36px); z-index: 4; }
 
-    .curriculum-cards-stack { padding-bottom: 80vh; }
+    .curriculum-cards-stack { padding-bottom: 10vh; }
 
     .curriculum-card {
         padding: 20px 16px;

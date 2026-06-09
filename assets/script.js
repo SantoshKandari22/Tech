@@ -368,11 +368,20 @@
         });
 
         new Swiper('.mentors-swiper', {
-            slidesPerView: 1.2, spaceBetween: 20, loop: true,
-            speed: 300,
-            autoplay: { delay: 2500, disableOnInteraction: false },
-            navigation: { nextEl: '.mentors-slider-wrapper .swiper-button-next', prevEl: '.mentors-slider-wrapper .swiper-button-prev' },
-            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 4 } },
+            slidesPerView: 1.2, 
+            spaceBetween: 20, 
+            loop: true,
+            speed: 800,
+            autoplay: { delay: 4000, disableOnInteraction: false },
+            navigation: { 
+                nextEl: '.mentors-slider-wrapper .swiper-button-next', 
+                prevEl: '.mentors-slider-wrapper .swiper-button-prev' 
+            },
+            breakpoints: { 
+                480: { slidesPerView: 2.2 },
+                768: { slidesPerView: 3.2 }, 
+                1024: { slidesPerView: 4.5 } 
+            },
         });
     }
 
