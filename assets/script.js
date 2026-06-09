@@ -50,89 +50,212 @@
         const section = document.getElementById('curriculum');
         if (!section) return;
 
+        const stack = section.querySelector('.curriculum-cards-stack');
         const cards = section.querySelectorAll('.curriculum-card');
         const navLinks = section.querySelectorAll('.cur-nav-link');
-        if (!cards.length || !navLinks.length) return;
+        if (!stack || !cards.length || !navLinks.length) return;
 
-        const rootStyles = getComputedStyle(document.documentElement);
-        const navH = parseInt(rootStyles.getPropertyValue('--nav-h'), 10) || 72;
-        const tickerH = parseInt(rootStyles.getPropertyValue('--ticker-h'), 10) || 36;
-        const navOffset = navH + tickerH + 16;
-        const scrollOffset = -navOffset;
-
-        function scrollToCard(targetCard) {
-            if (!targetCard) return;
-            if (lenis) {
-                lenis.scrollTo(targetCard, { offset: scrollOffset, duration: 1.2 });
-            } else {
-                const y = targetCard.getBoundingClientRect().top + window.scrollY + scrollOffset;
-                window.scrollTo({ top: y, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        // Compute each card's *natural* page-top position.
+        // IMPORTANT: We must NOT read card.offsetTop because `position: sticky`
+        // elements report their stuck position, not the natural flow position.
+        // Instead we accumulate (height + margin) of each preceding card
+        // starting from the stack container's absolute top.
+        let cardOffsets = [];
+        function cacheCardOffsets() {
+            // Get the stack container's absolute page-top.
+            // The stack container is position:relative (not sticky), so
+            // walking its offsetParent chain is reliable.
+            let stackAbsTop = 0;
+            let el = stack;
+            while (el) {
+                stackAbsTop += el.offsetTop;
+                el = el.offsetParent;
             }
+
+            // Build card offsets by accumulating heights + margins
+            let runningOffset = 0;
+            cardOffsets = Array.from(cards).map((card, i) => {
+                const naturalTop = stackAbsTop + runningOffset;
+                const cs = getComputedStyle(card);
+                const mb = parseFloat(cs.marginBottom) || 0;
+                // offsetHeight is the full rendered height (unaffected by sticky)
+                runningOffset += card.offsetHeight + mb;
+                return naturalTop;
+            });
+        }
+
+        function getStackMetrics() {
+            const rootStyles = getComputedStyle(document.documentElement);
+            const navH = parseFloat(rootStyles.getPropertyValue('--nav-h')) || 72;
+            const tickerH = parseFloat(rootStyles.getPropertyValue('--ticker-h')) || 36;
+            
+            const isSmallScreen = window.innerWidth <= 991.98;
+            const isVerySmall = window.innerWidth <= 767.98;
+            
+            let stackBase = 16;
+            let stackStep = 24;
+
+            if (isVerySmall) {
+                stackBase = 56;
+                stackStep = 12;
+            } else if (isSmallScreen) {
+                stackBase = 64;
+                stackStep = 18;
+            }
+            
+            const stickyTop = navH + tickerH;
+            return { stickyTop, stackBase, stackStep };
         }
 
         let currentActiveId = cards[0] ? cards[0].id : null;
+        let isNavigating = false;
+        let navigationTimer = null;
 
-        function setActiveNav(cardId) {
-            if (cardId === currentActiveId) return;
+        function scrollToCard(targetCard, index) {
+            if (!targetCard) return;
+
+            // Re-cache offsets (accumulation approach is sticky-safe)
+            cacheCardOffsets();
+
+            const { stickyTop, stackBase, stackStep } = getStackMetrics();
+            
+            // The viewport position where this card should sit (its sticky top)
+            const desiredViewportTop = stickyTop + stackBase + (index * stackStep);
+            
+            // Scroll target: put the card's natural top at its sticky position
+            const cardPageTop = cardOffsets[index];
+            const targetY = Math.max(0, cardPageTop - desiredViewportTop);
+
+            isNavigating = true;
+            setActiveNav(targetCard.id, true);
+
+            // Clear any pending navigation finish timer
+            if (navigationTimer) {
+                clearTimeout(navigationTimer);
+                navigationTimer = null;
+            }
+
+            // Stop any in-flight Lenis animation before starting a new one
+            if (lenis) {
+                lenis.stop();
+                lenis.start();
+
+                lenis.scrollTo(targetY, { 
+                    duration: 1.2,
+                    onComplete: () => {
+                        navigationTimer = setTimeout(() => {
+                            isNavigating = false;
+                            cacheCardOffsets(); // re-cache at final position
+                            const m = getStackMetrics();
+                            updateActiveNav(m.stickyTop, m.stackBase, m.stackStep);
+                        }, 100);
+                    }
+                });
+            } else {
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+                navigationTimer = setTimeout(() => {
+                    isNavigating = false;
+                    cacheCardOffsets(); // re-cache at final position
+                    const m = getStackMetrics();
+                    updateActiveNav(m.stickyTop, m.stackBase, m.stackStep);
+                }, 1000);
+            }
+        }
+
+        function setActiveNav(cardId, force) {
+            if (!force && cardId === currentActiveId) return;
             currentActiveId = cardId;
             navLinks.forEach((link) => {
                 link.classList.toggle('active', link.dataset.target === cardId);
             });
-            // Scroll active pill into view on horizontal nav (tablet/mobile)
             const activeLink = section.querySelector(`.cur-nav-link[data-target="${cardId}"]`);
             if (activeLink) {
                 activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
         }
 
-        // Scroll-position-based active nav detection (works in both directions, all viewports)
+        function updateActiveNav(stickyTop, stackBase, stackStep) {
+            let activeId = null;
+
+            // We check from last to first — the highest-indexed card whose top
+            // has reached (or passed) its sticky position is the "active" one.
+            for (let i = cards.length - 1; i >= 0; i--) {
+                const card = cards[i];
+                const rect = card.getBoundingClientRect();
+                const cardOffset = stackBase + (i * stackStep);
+                const targetStickyTop = stickyTop + cardOffset;
+                
+                // A card is "active" if it has reached its sticky position
+                // We use a larger threshold (20px) for more reliable detection
+                if (rect.top <= targetStickyTop + 20) {
+                    activeId = card.id;
+                    break;
+                }
+            }
+
+            if (!activeId && cards.length) activeId = cards[0].id;
+            if (activeId) {
+                currentActiveId = activeId;
+                navLinks.forEach((link) => {
+                    link.classList.toggle('active', link.dataset.target === activeId);
+                });
+                const activeLink = section.querySelector(`.cur-nav-link[data-target="${activeId}"]`);
+                if (activeLink && !isNavigating) {
+                    activeLink.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                }
+            }
+        }
+
         let scrollTicking = false;
         function onScrollUpdateNav() {
-            if (scrollTicking) return;
+            if (isNavigating || scrollTicking) return;
             scrollTicking = true;
             requestAnimationFrame(() => {
                 scrollTicking = false;
-                // Determine the trigger line — just below the sticky nav area
-                const triggerLine = navOffset + 80;
-                let activeId = null;
+                if (isNavigating) return;
 
-                // Find the last card whose top is at or above the trigger line
-                for (let i = cards.length - 1; i >= 0; i--) {
-                    const rect = cards[i].getBoundingClientRect();
-                    if (rect.top <= triggerLine) {
-                        activeId = cards[i].id;
-                        break;
-                    }
-                }
-
-                // If none found (scrolled above all cards), pick the first
-                if (!activeId && cards.length) {
-                    activeId = cards[0].id;
-                }
-
-                if (activeId) setActiveNav(activeId);
+                const { stickyTop, stackBase, stackStep } = getStackMetrics();
+                updateActiveNav(stickyTop, stackBase, stackStep);
             });
         }
 
         window.addEventListener('scroll', onScrollUpdateNav, { passive: true });
-        // Also listen to Lenis scroll if available
+        window.addEventListener('resize', () => {
+            cacheCardOffsets();
+            onScrollUpdateNav();
+        }, { passive: true });
         if (lenis) {
             lenis.on('scroll', onScrollUpdateNav);
         }
 
-        // Nav link click handler — works the same on all viewports (stacking, no accordion)
-        navLinks.forEach((link) => {
+        // Sidebar nav click handler
+        navLinks.forEach((link, index) => {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
                 const targetId = link.dataset.target;
                 const targetCard = section.querySelector(`#${CSS.escape(targetId)}`);
                 if (!targetCard) return;
-                setActiveNav(targetId);
-                scrollToCard(targetCard);
+                
+                scrollToCard(targetCard, index);
             });
         });
 
-        // Run once on init to set correct active state
+        // Also allow clicking on the card header to navigate to that card
+        // (ensures it unstacks and shows properly when clicked)
+        cards.forEach((card, index) => {
+            const header = card.querySelector('.curriculum-card-header');
+            if (header) {
+                header.style.cursor = 'pointer';
+                header.addEventListener('click', (e) => {
+                    // Don't interfere with links or buttons inside the header
+                    if (e.target.closest('a, button')) return;
+                    scrollToCard(card, index);
+                });
+            }
+        });
+
+        // Initial cache and nav state
+        cacheCardOffsets();
         onScrollUpdateNav();
     }
 

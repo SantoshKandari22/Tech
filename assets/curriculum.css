@@ -78,7 +78,10 @@
     align-items: start;
 }
 
-.curriculum-cards-stack { padding-bottom: 10vh; }
+.curriculum-cards-stack { 
+    position: relative;
+    padding-bottom: 60vh; 
+}
 
 /* --- Header & badge --- */
 .curriculum-header { margin-bottom: 48px; }
@@ -109,12 +112,16 @@
     position: sticky;
     top: calc(var(--cur-sticky-top) + 16px);
     padding: 24px 0;
+    z-index: 100;
+    pointer-events: auto;
 }
 
 .cur-nav-list {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    position: relative;
+    z-index: 101;
 }
 
 .curriculum-section .cur-nav-link {
@@ -523,7 +530,7 @@
 
     .curriculum-sidebar {
         top: var(--cur-sticky-top);
-        z-index: 20;
+        z-index: 1000;
         padding: 10px 0;
         background: rgba(6, 6, 16, 0.96);
         backdrop-filter: blur(20px);
